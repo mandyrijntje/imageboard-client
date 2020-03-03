@@ -3,8 +3,8 @@ import request from "superagent"; //superagent connects the client to server
 //GETTING ALL IMAGES
 
 export const ALL_IMAGES = "ALL_IMAGES";
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://boiling-journey-26718.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://boiling-journey-26718.herokuapp.com";
 function allImages(payload) {
   return {
     type: ALL_IMAGES,
@@ -53,9 +53,9 @@ export const createImage = data => (dispatch, getState) => {
 // LOGGING IN
 
 function loggedIn(payload) {
-  console.log("New Image action is being created");
+  console.log("You logged in");
   return {
-    type: "JWT",
+    type: "GET_JWT",
     payload
   };
 }
@@ -65,8 +65,26 @@ export const login = data => dispatch => {
     .post(`${baseUrl}/login`)
     .send(data)
     .then(response => {
-      console.log("Creating, creating...");
-      const action = loggedIn(response.body);
+      console.log("Logging, in...");
+      const action = loggedIn(response.body.jwt);
+      dispatch(action);
+    })
+    .catch(console.error);
+};
+
+// signup
+export const addUser = payload => {
+  return {
+    type: "NEW_USER",
+    payload
+  };
+};
+export const signup = data => dispatch => {
+  request
+    .post(`${baseUrl}/users`)
+    .send(data)
+    .then(response => {
+      const action = addUser(response.body.email);
       dispatch(action);
     })
     .catch(console.error);

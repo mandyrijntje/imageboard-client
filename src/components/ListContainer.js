@@ -2,8 +2,6 @@ import React from "react";
 import { getImages } from "../actions";
 import { connect } from "react-redux";
 import List from "./List";
-import CreateFormContainer from "./CreateFormContainer";
-import LoginFormContainer from "./LoginFormContainer";
 
 class ListContainer extends React.Component {
   componentDidMount() {
@@ -14,22 +12,9 @@ class ListContainer extends React.Component {
     if (!this.props.images) {
       return <div>Loading...</div>;
     }
-    const displayImages = this.props.images.map(image => {
-      return <List images={image} />;
-    });
-    if (!this.props.user) {
-      //if the value of user is falsey then you're not logged in
-      return (
-        <div>
-          <LoginFormContainer />
-          <div>{displayImages}</div>
-        </div>
-      );
-    }
     return (
       <div>
-        <CreateFormContainer />
-        <div>{displayImages}</div>
+        <List images={this.props.images} user={this.props.user} />
       </div>
     );
   }

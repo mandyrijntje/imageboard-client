@@ -1,13 +1,34 @@
 import React, { Component } from "react";
+import LoginFormContainer from "./LoginFormContainer";
+import SignUpFormContainer from "./SignUpFormContainer";
+import CreateFormContainer from "./CreateFormContainer";
 
 class List extends Component {
   render() {
-    return (
-      <div key={this.props.images.id}>
-        <h3>{this.props.images.title}</h3>
-        <img src={this.props.images.url} alt="" />
-      </div>
-    );
+    const list = this.props.images.map(image => {
+      return (
+        <div key={image.id}>
+          <h3>{image.title}</h3>
+          <img src={image.url} alt="" />
+        </div>
+      );
+    });
+    if (!this.props.user.auth) {
+      return (
+        <div>
+          <LoginFormContainer />
+          <SignUpFormContainer />
+          {list}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <CreateFormContainer />
+          {list}
+        </div>
+      );
+    }
   }
 }
 
