@@ -3,7 +3,8 @@ import request from "superagent";
 //GETTING ALL IMAGES
 
 export const ALL_IMAGES = "ALL_IMAGES";
-const baseUrl = "http://localhost:4000";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://boiling-journey-26718.herokuapp.com";
 function allImages(payload) {
   return {
     type: ALL_IMAGES,
