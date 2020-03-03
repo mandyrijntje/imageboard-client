@@ -1,4 +1,4 @@
-import request from "superagent";
+import request from "superagent"; //superagent connects the client to server
 
 //GETTING ALL IMAGES
 

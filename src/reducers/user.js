@@ -1,8 +1,7 @@
-import { JWT } from "../actions";
 const initialState = "";
 export default function(state = initialState, action) {
   switch (action.type) {
-    case JWT: {
+    case "JWT": {
       return action.payload;
     }
     default: {

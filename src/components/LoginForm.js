@@ -12,15 +12,15 @@ export default function LoginForm(props) {
         <input
           type="text"
           className="form-control"
-          id="title"
-          aria-describedby="title"
-          value={props.values.title}
-          placeholder="title"
+          id="text"
+          aria-describedby="text"
+          value={props.values.email}
+          placeholder="email"
           onChange={handleChange}
-          name="title"
+          name="email"
         />
         <small id="title" className="form-text text-muted">
-          Your image title should be any name, preferably that of your image.
+          Your email please.
         </small>
       </div>
       <div className="form-group">
@@ -28,18 +28,18 @@ export default function LoginForm(props) {
         <input
           type="password"
           className="form-control"
-          id="url"
-          aria-describedby="url"
-          value={props.values.url}
-          placeholder="url"
+          id="password"
+          aria-describedby="password"
+          value={props.values.password}
+          placeholder="password"
           onChange={handleChange}
-          name="url"
+          name="password"
         />
-        <small id="url" className="form-text text-muted">
-          Your image URL should be any url, preferably the url of your image.
+        <small id="password" className="form-text text-muted">
+          Your password please.
         </small>
       </div>
-      <button className="btn btn-primary">Display</button>
+      <button className="btn btn-primary">Login</button>
     </form>
   );
 }
