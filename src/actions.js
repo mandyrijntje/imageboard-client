@@ -3,8 +3,8 @@ import request from "superagent"; //superagent connects the client to server
 //GETTING ALL IMAGES
 
 export const ALL_IMAGES = "ALL_IMAGES";
-// const baseUrl = "http://localhost:4000";
-const baseUrl = "https://boiling-journey-26718.herokuapp.com";
+const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://boiling-journey-26718.herokuapp.com";
 function allImages(payload) {
   return {
     type: ALL_IMAGES,
@@ -40,7 +40,7 @@ export const createImage = data => (dispatch, getState) => {
   const { user } = state;
   request
     .post(`${baseUrl}/images`)
-    .set("Authorization", `Bearer ${user}`)
+    .set("Authorization", `Bearer ${user.jwt}`) //in reduxstate you see that user.jwt allows the fn to access the jwt
     .send(data)
     .then(response => {
       console.log("Creating, creating...");
