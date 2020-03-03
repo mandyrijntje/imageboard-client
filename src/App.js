@@ -1,16 +1,24 @@
 import React, { Component } from "react";
-import store from "./store";
-
-import { Provider } from "react-redux"; //provide the redux store so that you can use connect and mstp in components!
 import { Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import "./App.css";
 import ListContainer from "./components/ListContainer";
+import UsersListContainer from "./components/UsersListContainer";
+import NavBar from "./components/NavBar";
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Route path="/" exact component={ListContainer} />
+        <div>
+          <NavBar />
+          <Route path="/" exact component={ListContainer} />
+          <Route path="/users" exact component={UsersListContainer} />
+        </div>
       </Provider>
     );
   }
 }
+
 export default App;
