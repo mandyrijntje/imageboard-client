@@ -35,9 +35,12 @@ function newImage(payload) {
   };
 }
 
-export const createImage = data => dispatch => {
+export const createImage = data => (dispatch, getState) => {
+  const state = getState();
+  const { user } = state;
   request
     .post(`${baseUrl}/images`)
+    .set("Authorization", `Bearer ${user}`)
     .send(data)
     .then(response => {
       console.log("Creating, creating...");
