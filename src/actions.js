@@ -26,11 +26,11 @@ export const getImages = () => (dispatch, getState) => {
 };
 
 // CREATING AN IMAGE
-export const NEW_IMAGE = "NEW_IMAGE";
+
 function newImage(payload) {
   console.log("New Image action is being created");
   return {
-    type: NEW_IMAGE,
+    type: "NEW_IMAGE",
     payload
   };
 }
@@ -42,6 +42,28 @@ export const createImage = data => dispatch => {
     .then(response => {
       console.log("Creating, creating...");
       const action = newImage(response.body);
+      dispatch(action);
+    })
+    .catch(console.error);
+};
+
+// LOGGING IN
+
+function loggedIn(payload) {
+  console.log("New Image action is being created");
+  return {
+    type: "JWT",
+    payload
+  };
+}
+
+export const login = data => dispatch => {
+  request
+    .post(`${baseUrl}/login`)
+    .send(data)
+    .then(response => {
+      console.log("Creating, creating...");
+      const action = loggedIn(response.body);
       dispatch(action);
     })
     .catch(console.error);
